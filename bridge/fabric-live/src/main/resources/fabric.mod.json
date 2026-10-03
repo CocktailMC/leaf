@@ -5,6 +5,7 @@
   "name": "LEAFMC Fabric Bridge",
   "description": "Thin Fabric bootstrap for the LEAFMC native runtime (live Loom)",
   "authors": ["LEAFMC"],
+  "license": "Apache-2.0",
   "environment": "*",
   "entrypoints": {
     "main": ["dev.leafmc.bridge.fabric.LeafFabricLiveBootstrap"]

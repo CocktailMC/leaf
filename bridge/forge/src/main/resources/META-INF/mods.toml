@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-license="All Rights Reserved"
+license="Apache-2.0"
 
 [[mods]]
 modId="leaf_bootstrap_forge"
