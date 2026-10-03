@@ -1,0 +1,6 @@
+# Leaf C ABI for Kotlin/Native cinterop
+headers = leaf/abi/leaf_abi_v1.h leaf/abi/leaf_event_v1.h leaf/abi/leaf_error_v1.h
+headerFilter = leaf/abi/**
+package = leaf.abi
+compilerOpts = -I../../../abi/include
+linkerOpts.linux = -L../../../build/engine/bridge-host -lleaf_bridge

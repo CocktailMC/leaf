@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "leaf-bootstrap-fabric",
+  "version": "0.1.0",
+  "name": "LEAFMC Fabric Bridge",
+  "description": "Thin Fabric bootstrap for the LEAFMC native runtime",
+  "authors": ["LEAFMC"],
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.leafmc.bridge.fabric.LeafFabricBootstrap"]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=1.20.1"
+  }
+}

@@ -1,0 +1,87 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.46,6.2)'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    reobf = false
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            property 'leaf.minecraft.version', '1.21.1'
+            property 'leaf.leafmods.dir', "${project.projectDir}/run/leafmods"
+            property 'leaf.game.dir', "${project.projectDir}/run"
+            jvmArgs '--enable-native-access=ALL-UNNAMED'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            args '--nogui'
+        }
+        client {
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ['../common/src/main/java', 'src/main/java']
+            exclude 'dev/leafmc/bridge/smoke/**'
+            exclude 'dev/leafmc/bridge/harness/**'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 22
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            forge_version          : forge_version,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties
+    }
+    def leafNative = rootProject.file('../../build/engine/bridge-host/libleaf_bridge.so')
+    if (leafNative.exists()) {
+        from(leafNative) {
+            into 'native/linux-x86_64'
+        }
+    }
+}

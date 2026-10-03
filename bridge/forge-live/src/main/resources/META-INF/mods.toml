@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="[52,)"
+license="${mod_license}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+description='''Thin Forge bootstrap for the LEAFMC native runtime (live).'''

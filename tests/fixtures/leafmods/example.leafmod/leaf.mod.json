@@ -1,0 +1,22 @@
+{
+  "id": "example",
+  "name": "Example Mod",
+  "version": "1.0.0",
+  "leaf": { "api": "1" },
+  "runtime": "native",
+  "entry": "leaf_mod_entry",
+  "minecraft": {
+    "min": "1.20.1",
+    "max": "1.21.x"
+  },
+  "dependencies": {
+    "required": [
+      { "id": "economy", "version": ">=1.0.0" }
+    ],
+    "optional": ["world"]
+  },
+  "targets": [
+    "windows-x86_64",
+    "linux-x86_64"
+  ]
+}

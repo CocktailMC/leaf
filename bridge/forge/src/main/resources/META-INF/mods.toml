@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="leaf_bootstrap_forge"
+version="0.1.0"
+displayName="LEAFMC Forge Bridge"
+description='''Thin Forge bootstrap for the LEAFMC native runtime.'''

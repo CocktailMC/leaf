@@ -1,0 +1,46 @@
+pluginManagement {
+    repositories {
+        maven("https://maven.fabricmc.net/")
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id("fabric-loom") version "1.10-SNAPSHOT"
+    id("java")
+}
+
+group = "dev.leafmc"
+version = "0.1.0"
+
+base {
+    archivesName.set("leaf-bootstrap-fabric-loom")
+}
+
+repositories {
+    mavenCentral()
+    maven("https://maven.fabricmc.net/")
+}
+
+dependencies {
+    minecraft("com.mojang:minecraft:1.21.1")
+    mappings("net.fabricmc:yarn:1.21.1+build.3:v2")
+    modImplementation("net.fabricmc:fabric-loader:0.16.14")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.116.0+1.21.1")
+
+    implementation(project(":")) // placeholder — prefer copying common sources
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+tasks.processResources {
+    inputs.property("version", version)
+    filesMatching("fabric.mod.json") {
+        expand("version" to version)
+    }
+}

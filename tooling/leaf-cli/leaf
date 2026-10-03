@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Convenience wrapper around tooling/leaf-cli/leaf.py
+exec python3 "$(cd "$(dirname "$0")" && pwd)/leaf.py" "$@"
